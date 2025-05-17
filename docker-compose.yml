@@ -16,6 +16,7 @@ services:
     build: ./backend
     environment:
       DATABASE_URL: postgres://myuser:mypassword@db:5432/myapp
+      JWT_SECRET: myverystrongsecret123
       # other env vars
     ports:
       - "4000:4000"
