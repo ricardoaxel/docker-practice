@@ -1,0 +1,47 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  BACKEND_IMAGE: ashelio/taskify-backend
+  FRONTEND_IMAGE: ashelio/taskify-frontend
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 🔐 Log in to Docker Hub
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      # 🧱 Build and push backend
+      - name: Build and push backend image
+        run: |
+          docker build -t $BACKEND_IMAGE:latest ./backend
+          docker push $BACKEND_IMAGE:latest
+
+      # 🧱 Build and push frontend
+      - name: Build and push frontend image
+        run: |
+          docker build -t $FRONTEND_IMAGE:latest ./frontend
+          docker push $FRONTEND_IMAGE:latest
+
+      # 🧬 SSH into EC2 and restart the app
+      - name: Deploy to EC2
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > ec2_key.pem
+          chmod 600 ec2_key.pem
+          ssh -o StrictHostKeyChecking=no -i ec2_key.pem ubuntu@44.202.243.182 << 'EOF'
+            cd ~
+            docker pull $BACKEND_IMAGE:latest
+            docker pull $FRONTEND_IMAGE:latest
+            docker compose down
+            docker compose up -d
+          EOF

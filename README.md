@@ -6,7 +6,8 @@ ssh -i /Users/ashel/Documents/Programming/Fullstack/taskifyExtraFiles/taskify-ec
 To create images:
 
 docker-compose build
-docker-compose up
+docker-compose up -d
+
 docker images
 docker save -o taskify-backend.tar taskify-backend
 
