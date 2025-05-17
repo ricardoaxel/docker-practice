@@ -142,7 +142,7 @@ export default function App() {
             resetForm();
           }}
         >
-          Register 324334
+          Register 324334adsas
         </button>
       </div>
 
