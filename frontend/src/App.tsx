@@ -111,7 +111,7 @@ export default function App() {
               setScreen("login");
             }}
           >
-            Logout 4
+            Logout 434223
           </button>
         </div>
       </div>
@@ -131,7 +131,7 @@ export default function App() {
             resetForm();
           }}
         >
-          Login 3
+          Login 3q2
         </button>
         <button
           className={`px-4 py-2 rounded-r ${
@@ -142,7 +142,7 @@ export default function App() {
             resetForm();
           }}
         >
-          Register 3
+          Register 324334
         </button>
       </div>
 
