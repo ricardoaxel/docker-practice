@@ -111,7 +111,7 @@ export default function App() {
               setScreen("login");
             }}
           >
-            Logout 3
+            Logout 4
           </button>
         </div>
       </div>
