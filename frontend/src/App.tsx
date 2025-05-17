@@ -111,7 +111,7 @@ export default function App() {
               setScreen("login");
             }}
           >
-            Logout
+            Logout 3
           </button>
         </div>
       </div>
@@ -120,7 +120,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <h1>TEST 2</h1>
+      <h1>TEST 3</h1>
       <div className="mb-4">
         <button
           className={`px-4 py-2 rounded-l ${
@@ -131,7 +131,7 @@ export default function App() {
             resetForm();
           }}
         >
-          Login 2
+          Login 3
         </button>
         <button
           className={`px-4 py-2 rounded-r ${
@@ -142,7 +142,7 @@ export default function App() {
             resetForm();
           }}
         >
-          Register 2
+          Register 3
         </button>
       </div>
 
@@ -151,7 +151,7 @@ export default function App() {
           onSubmit={handleRegister}
           className="bg-white p-6 rounded shadow-md w-full max-w-sm"
         >
-          <h2 className="text-2xl mb-4 font-semibold">Register</h2>
+          <h2 className="text-2xl mb-4 font-semibold">Register 3</h2>
           {error && <div className="mb-3 text-red-600">{error}</div>}
           <input
             type="email"
@@ -185,7 +185,7 @@ export default function App() {
           onSubmit={handleLogin}
           className="bg-white p-6 rounded shadow-md w-full max-w-sm"
         >
-          <h2 className="text-2xl mb-4 font-semibold">Login</h2>
+          <h2 className="text-2xl mb-4 font-semibold">Login 3</h2>
           {error && <div className="mb-3 text-red-600">{error}</div>}
           <input
             type="email"
