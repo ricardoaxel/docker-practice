@@ -131,7 +131,7 @@ export default function App() {
             resetForm();
           }}
         >
-          Login
+          Login 2
         </button>
         <button
           className={`px-4 py-2 rounded-r ${
@@ -142,7 +142,7 @@ export default function App() {
             resetForm();
           }}
         >
-          Register
+          Register 2
         </button>
       </div>
 
