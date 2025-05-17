@@ -2,6 +2,8 @@ import { useState } from "react";
 
 type Screen = "register" | "login" | "welcome";
 
+const URL = "http://44.202.243.182:4000";
+
 export default function App() {
   const [screen, setScreen] = useState<Screen>("login");
   const [token, setToken] = useState<string | null>(null);
@@ -28,7 +30,7 @@ export default function App() {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:4000/api/auth/register", {
+      const res = await fetch(`${URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -42,7 +44,7 @@ export default function App() {
       }
 
       // Auto-login after register
-      const loginRes = await fetch("http://localhost:4000/api/auth/login", {
+      const loginRes = await fetch(`${URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -70,7 +72,7 @@ export default function App() {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:4000/api/auth/login", {
+      const res = await fetch(`${URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
