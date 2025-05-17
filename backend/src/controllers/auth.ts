@@ -12,7 +12,7 @@ export const register = async (req: Request, res: Response) => {
       email,
     ]);
     if (userCheck.rows.length > 0) {
-      return res.status(400).json({ message: "User already exists" });
+      res.status(400).json({ message: "User already exists" });
     }
 
     const hashed = await bcrypt.hash(password, 10);
@@ -23,10 +23,10 @@ export const register = async (req: Request, res: Response) => {
       hashed,
     ]);
 
-    return res.status(201).json({ message: "User registered" });
+    res.status(201).json({ message: "User registered" });
   } catch (error) {
     console.error("Register error:", error);
-    return res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -39,24 +39,24 @@ export const login = async (req: Request, res: Response) => {
     ]);
 
     if (userQuery.rows.length === 0) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      res.status(401).json({ message: "Invalid credentials" });
     }
 
     const user = userQuery.rows[0];
 
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      res.status(401).json({ message: "Invalid credentials" });
     }
 
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET!, {
       expiresIn: "1h",
     });
 
-    return res.json({ token });
+    res.json({ token });
   } catch (error) {
     console.error("Login error:", error);
-    return res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -64,9 +64,9 @@ export const login = async (req: Request, res: Response) => {
 export const getUsers = async (req: Request, res: Response) => {
   try {
     const usersQuery = await pool.query("SELECT email FROM users");
-    return res.json({ users: usersQuery.rows });
+    res.json({ users: usersQuery.rows });
   } catch (error) {
     console.error("Get users error:", error);
-    return res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error" });
   }
 };
